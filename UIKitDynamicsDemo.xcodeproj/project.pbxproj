@@ -12,6 +12,8 @@
 		324B26051E1FD37200893BD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 324B26031E1FD37200893BD8 /* Main.storyboard */; };
 		324B26071E1FD37200893BD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 324B26061E1FD37200893BD8 /* Assets.xcassets */; };
 		324B260A1E1FD37200893BD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 324B26081E1FD37200893BD8 /* LaunchScreen.storyboard */; };
+		324B26121E1FFAEB00893BD8 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B26111E1FFAEB00893BD8 /* UIColorExtensions.swift */; };
+		324B26141E1FFCE000893BD8 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B26131E1FFCE000893BD8 /* Circle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		324B26061E1FD37200893BD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		324B26091E1FD37200893BD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		324B260B1E1FD37200893BD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		324B26111E1FFAEB00893BD8 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtensions.swift; path = ../UIColorExtensions.swift; sourceTree = "<group>"; };
+		324B26131E1FFCE000893BD8 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			children = (
 				324B25FF1E1FD37200893BD8 /* AppDelegate.swift */,
 				324B26011E1FD37200893BD8 /* ViewController.swift */,
+				324B26131E1FFCE000893BD8 /* Circle.swift */,
+				324B26111E1FFAEB00893BD8 /* UIColorExtensions.swift */,
 				324B26031E1FD37200893BD8 /* Main.storyboard */,
 				324B26061E1FD37200893BD8 /* Assets.xcassets */,
 				324B26081E1FD37200893BD8 /* LaunchScreen.storyboard */,
@@ -96,8 +102,8 @@
 				TargetAttributes = {
 					324B25FB1E1FD37200893BD8 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 2LWLSS2G65;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = H3KK5B2KGB;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -137,6 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				324B26121E1FFAEB00893BD8 /* UIColorExtensions.swift in Sources */,
+				324B26141E1FFCE000893BD8 /* Circle.swift in Sources */,
 				324B26021E1FD37200893BD8 /* ViewController.swift in Sources */,
 				324B26001E1FD37200893BD8 /* AppDelegate.swift in Sources */,
 			);
@@ -204,7 +212,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -248,7 +256,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -261,11 +269,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2LWLSS2G65;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = H3KK5B2KGB;
 				INFOPLIST_FILE = UIKitDynamicsDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mentormate.UIKitDynamicsDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e3c19095-8d13-4516-af65-238aee388391";
+				PROVISIONING_PROFILE_SPECIFIER = "Enterprise Development";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -274,7 +285,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2LWLSS2G65;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = UIKitDynamicsDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mentormate.UIKitDynamicsDemo;
@@ -302,6 +313,7 @@
 				324B26101E1FD37200893BD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
