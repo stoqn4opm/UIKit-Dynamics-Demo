@@ -56,6 +56,10 @@ class CircleAnimationView: UIView {
         //        animator.setValue(true, forKey: "debugEnabled")
         //        animator.setValue(0.05, forKey: "debugAnimationSpeed")
     }
+    
+    override func willMove(toSuperview newSuperview: UIView?) {
+        performEntranceAnimation()
+    }
 }
 
 //MARK: - Animations 
@@ -74,6 +78,22 @@ extension CircleAnimationView {
         case .fast:
             self.noiseGravityBehaviour.strength = 100
             self.noiseGravityBehaviour.smoothness = 0.9
+        }
+    }
+    
+    fileprivate func performEntranceAnimation() {
+        let ease = CAMediaTimingFunction(controlPoints: Float(0.8), Float(0.0), Float(0.2), Float(1.0))
+        
+        let animation = CABasicAnimation(keyPath: "transform.scale")
+        animation.fromValue = 0
+        animation.toValue = 1
+        animation.duration = 1
+        animation.isRemovedOnCompletion = false
+        animation.fillMode = kCAFillModeForwards
+        animation.timingFunction = ease
+        
+        for circle in circles {
+            circle.layer.add(animation, forKey: "scale")
         }
     }
 }
