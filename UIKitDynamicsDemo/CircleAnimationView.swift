@@ -1,5 +1,5 @@
 //
-//  CircleAnimationvView.swift
+//  CircleAnimationView.swift
 //  UIKitDynamicsDemo
 //
 //  Created by Stoyan Stoyanov on 1/7/17.
@@ -9,7 +9,7 @@
 import UIKit
 
 
-class CircleAnimationvView: UIView {
+class CircleAnimationView: UIView {
 
     var animator: UIDynamicAnimator!
     
@@ -24,18 +24,8 @@ class CircleAnimationvView: UIView {
     
     
     //MARK: - Configuration
-    private var _animationSpeed: AnimationSpeed?
     var animationSpeed: AnimationSpeed? {
-        get {
-            return _animationSpeed
-        }
-        set {
-            if _animationSpeed != newValue {
-                _animationSpeed = newValue
-                applySpeed(newValue)
-            }
-            
-        }
+        willSet { applySpeed(newValue) }
     }
     
     enum AnimationSpeed {
@@ -70,7 +60,7 @@ class CircleAnimationvView: UIView {
 
 //MARK: - Animations 
 
-extension CircleAnimationvView {
+extension CircleAnimationView {
     
     fileprivate func applySpeed(_ speed: AnimationSpeed?) {
         guard let speed = speed else { return }
@@ -90,7 +80,7 @@ extension CircleAnimationvView {
 
 //MARK: - Generating Circles
 
-extension CircleAnimationvView {
+extension CircleAnimationView {
     
     fileprivate func generateCircles() {
         
@@ -119,7 +109,7 @@ extension CircleAnimationvView {
 
 //MARK: - Setting Physics Behaviours
 
-extension CircleAnimationvView {
+extension CircleAnimationView {
     
     func setupBehaviors() {
         
@@ -145,7 +135,7 @@ extension CircleAnimationvView {
 
 //MARK: - Touches Handling
 
-extension CircleAnimationvView {
+extension CircleAnimationView {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         radialTouchGravityBehaviour.position = (touches.first?.location(in: self))!
