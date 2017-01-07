@@ -9,5 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var circlesView: CircleAnimationView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+//        circlesView.alpha = 0.8
+    }
 }

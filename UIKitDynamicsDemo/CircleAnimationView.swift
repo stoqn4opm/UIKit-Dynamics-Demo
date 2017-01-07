@@ -33,7 +33,7 @@ class CircleAnimationView: UIView {
         case fast
     }
     
-    let circlesCount = 25
+    let circlesCount = 35
     
     //MARK: - Initialization
     
@@ -52,9 +52,26 @@ class CircleAnimationView: UIView {
         self.generateCircles()
         self.setupBehaviors()
         
+        
+        // uncoment to enable blur effect
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.alpha = 0.4
+        blurEffectView.frame = self.bounds
+        
+        let vibrancyEffect = UIVibrancyEffect(blurEffect: blurEffect)
+        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
+        
+        self.addSubview(blurEffectView)
+        self.addSubview(vibrancyEffectView)
+        
+        // *****************************************
+        
         // for enabling debubbing uncomment following lines
-        //        animator.setValue(true, forKey: "debugEnabled")
-        //        animator.setValue(0.05, forKey: "debugAnimationSpeed")
+        //animator.setValue(true, forKey: "debugEnabled")
+        //animator.setValue(0.05, forKey: "debugAnimationSpeed")
+        
+        // *****************************************
     }
     
     override func willMove(toSuperview newSuperview: UIView?) {
@@ -127,6 +144,7 @@ extension CircleAnimationView {
             let circle = Circle.randomCircle
             self.addSubview(circle)
             circle.frame.origin = self.randomSpawnLocation
+            circle.alpha = 0.8
             circles.append(circle)
             
             let circleBehaviour = UIDynamicItemBehavior(items: [circle])
