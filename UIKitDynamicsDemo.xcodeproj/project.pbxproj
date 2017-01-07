@@ -14,6 +14,8 @@
 		324B260A1E1FD37200893BD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 324B26081E1FD37200893BD8 /* LaunchScreen.storyboard */; };
 		324B26121E1FFAEB00893BD8 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B26111E1FFAEB00893BD8 /* UIColorExtensions.swift */; };
 		324B26141E1FFCE000893BD8 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B26131E1FFCE000893BD8 /* Circle.swift */; };
+		326BF4ED1E215372007150F7 /* CircleAnimationvView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326BF4EC1E215372007150F7 /* CircleAnimationvView.swift */; };
+		32CE87111E215CD100CE8AA1 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CE87101E215CD100CE8AA1 /* TestViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		324B260B1E1FD37200893BD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		324B26111E1FFAEB00893BD8 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtensions.swift; path = ../UIColorExtensions.swift; sourceTree = "<group>"; };
 		324B26131E1FFCE000893BD8 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
+		326BF4EC1E215372007150F7 /* CircleAnimationvView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleAnimationvView.swift; sourceTree = "<group>"; };
+		32CE87101E215CD100CE8AA1 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +65,10 @@
 				324B25FF1E1FD37200893BD8 /* AppDelegate.swift */,
 				324B26011E1FD37200893BD8 /* ViewController.swift */,
 				324B26131E1FFCE000893BD8 /* Circle.swift */,
+				326BF4EC1E215372007150F7 /* CircleAnimationvView.swift */,
 				324B26111E1FFAEB00893BD8 /* UIColorExtensions.swift */,
 				324B26031E1FD37200893BD8 /* Main.storyboard */,
+				32CE87101E215CD100CE8AA1 /* TestViewController.swift */,
 				324B26061E1FD37200893BD8 /* Assets.xcassets */,
 				324B26081E1FD37200893BD8 /* LaunchScreen.storyboard */,
 				324B260B1E1FD37200893BD8 /* Info.plist */,
@@ -145,7 +151,9 @@
 			files = (
 				324B26121E1FFAEB00893BD8 /* UIColorExtensions.swift in Sources */,
 				324B26141E1FFCE000893BD8 /* Circle.swift in Sources */,
+				326BF4ED1E215372007150F7 /* CircleAnimationvView.swift in Sources */,
 				324B26021E1FD37200893BD8 /* ViewController.swift in Sources */,
+				32CE87111E215CD100CE8AA1 /* TestViewController.swift in Sources */,
 				324B26001E1FD37200893BD8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

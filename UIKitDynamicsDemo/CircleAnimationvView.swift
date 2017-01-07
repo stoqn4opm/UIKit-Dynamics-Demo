@@ -1,30 +1,102 @@
 //
-//  ViewController.swift
+//  CircleAnimationvView.swift
 //  UIKitDynamicsDemo
 //
-//  Created by Stoyan Stoyanov on 1/6/17.
+//  Created by Stoyan Stoyanov on 1/7/17.
 //  Copyright © 2017 Stoyan Stoyanov. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+
+class CircleAnimationvView: UIView {
 
     var animator: UIDynamicAnimator!
-    var collision: UICollisionBehavior!
     
     var circles:[Circle] = []
     var circlesBehaviour: [UIDynamicItemBehavior] = []
     
+    var collision: UICollisionBehavior!
     var noiseGravityBehaviour: UIFieldBehavior!
     var radialTouchGravityBehaviour: UIFieldBehavior!
+
     
-    func generateCircles() {
-        let circlesCount = 25
+    
+    
+    //MARK: - Configuration
+    private var _animationSpeed: AnimationSpeed?
+    var animationSpeed: AnimationSpeed? {
+        get {
+            return _animationSpeed
+        }
+        set {
+            if _animationSpeed != newValue {
+                _animationSpeed = newValue
+                applySpeed(newValue)
+            }
+            
+        }
+    }
+    
+    enum AnimationSpeed {
+        case slow
+        case fast
+    }
+    
+    let circlesCount = 25
+    
+    //MARK: - Initialization
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    func commonInit() {
+        animator = UIDynamicAnimator(referenceView: self)
+        self.generateCircles()
+        self.setupBehaviors()
+        
+        // for enabling debubbing uncomment following lines
+        //        animator.setValue(true, forKey: "debugEnabled")
+        //        animator.setValue(0.05, forKey: "debugAnimationSpeed")
+    }
+}
+
+//MARK: - Animations 
+
+extension CircleAnimationvView {
+    
+    fileprivate func applySpeed(_ speed: AnimationSpeed?) {
+        guard let speed = speed else { return }
+        
+        switch speed {
+        
+        case .slow:
+            noiseGravityBehaviour.strength = 50
+            self.noiseGravityBehaviour.smoothness = 0.6
+            
+        case .fast:
+            self.noiseGravityBehaviour.strength = 100
+            self.noiseGravityBehaviour.smoothness = 0.9
+        }
+    }
+}
+
+//MARK: - Generating Circles
+
+extension CircleAnimationvView {
+    
+    fileprivate func generateCircles() {
         
         for _ in 0...circlesCount {
             let circle = Circle.randomCircle
-            self.view.addSubview(circle)
+            self.addSubview(circle)
             circle.frame.origin = self.randomSpawnLocation
             circles.append(circle)
             
@@ -38,32 +110,16 @@ class ViewController: UIViewController {
     }
     
     var randomSpawnLocation: CGPoint {
-        let x = arc4random_uniform(UInt32(self.view.frame.width))
-        let y = arc4random_uniform(UInt32(self.view.frame.height))
+        let x = arc4random_uniform(UInt32(self.frame.width))
+        let y = arc4random_uniform(UInt32(self.frame.height))
         return CGPoint(x: Double(x), y: Double(y))
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        animator = UIDynamicAnimator(referenceView: view)
+}
 
-//        animator.setValue(true, forKey: "debugEnabled")
-//        animator.setValue(0.05, forKey: "debugAnimationSpeed")
-        
-        self.generateCircles()
-        self.setupBehaviors()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 6, execute: {
-            print("slow")
-            self.noiseGravityBehaviour.smoothness = 0.9
-            self.noiseGravityBehaviour.strength = 100
-        })
-        
-    }
-    
+//MARK: - Setting Physics Behaviours
+
+extension CircleAnimationvView {
     
     func setupBehaviors() {
         
@@ -71,9 +127,10 @@ class ViewController: UIViewController {
         collision.translatesReferenceBoundsIntoBoundary = true
         animator.addBehavior(collision)
         
+        // setting slow speed mode as default
         noiseGravityBehaviour = UIFieldBehavior.noiseField(smoothness: 0.6, animationSpeed: 0.3)
         noiseGravityBehaviour.strength = 50
-
+        
         radialTouchGravityBehaviour = UIFieldBehavior.radialGravityField(position: .zero)
         radialTouchGravityBehaviour.minimumRadius = 100
         radialTouchGravityBehaviour.falloff = 3
@@ -84,15 +141,20 @@ class ViewController: UIViewController {
         }
         animator.addBehavior(noiseGravityBehaviour)
     }
+}
+
+//MARK: - Touches Handling
+
+extension CircleAnimationvView {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        radialTouchGravityBehaviour.position = (touches.first?.location(in: self.view))!
+        radialTouchGravityBehaviour.position = (touches.first?.location(in: self))!
         animator.removeBehavior(noiseGravityBehaviour)
         animator.addBehavior(radialTouchGravityBehaviour)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        radialTouchGravityBehaviour.position = (touches.first?.location(in: self.view))!
+        radialTouchGravityBehaviour.position = (touches.first?.location(in: self))!
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -105,4 +167,3 @@ class ViewController: UIViewController {
         animator.addBehavior(noiseGravityBehaviour)
     }
 }
-
