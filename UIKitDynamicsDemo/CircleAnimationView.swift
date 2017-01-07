@@ -82,19 +82,38 @@ extension CircleAnimationView {
     }
     
     fileprivate func performEntranceAnimation() {
-        let ease = CAMediaTimingFunction(controlPoints: Float(0.8), Float(0.0), Float(0.2), Float(1.0))
+        let expandTiming = CAMediaTimingFunction(controlPoints: Float(0.8), Float(0.0), Float(0.2), Float(1.0))
+        let shrinkTiming = CAMediaTimingFunction(controlPoints: Float(0.0), Float(0.2), Float(0.7), Float(1.0))
         
-        let animation = CABasicAnimation(keyPath: "transform.scale")
-        animation.fromValue = 0
-        animation.toValue = 1
-        animation.duration = 1
-        animation.isRemovedOnCompletion = false
-        animation.fillMode = kCAFillModeForwards
-        animation.timingFunction = ease
-        
-        for circle in circles {
-            circle.layer.add(animation, forKey: "scale")
+        CATransaction.begin()
+        CATransaction.setCompletionBlock { () -> Void in
+            
+            // shrink step of animation
+            let shrinkAnimation = CABasicAnimation(keyPath: "transform.scale")
+            shrinkAnimation.fromValue = 1.1
+            shrinkAnimation.toValue = 1
+            shrinkAnimation.duration = 0.2
+            shrinkAnimation.isRemovedOnCompletion = false
+            shrinkAnimation.fillMode = kCAFillModeForwards
+            shrinkAnimation.timingFunction = shrinkTiming
+            
+            for circle in self.circles {
+                circle.layer.add(shrinkAnimation, forKey: "scale")
+            }
         }
+        // expand step of animation
+        let expandAnimation = CABasicAnimation(keyPath: "transform.scale")
+        expandAnimation.fromValue = 0
+        expandAnimation.toValue = 1.1
+        expandAnimation.duration = 1
+        expandAnimation.isRemovedOnCompletion = false
+        expandAnimation.fillMode = kCAFillModeForwards
+        expandAnimation.timingFunction = expandTiming
+      
+        for circle in circles {
+            circle.layer.add(expandAnimation, forKey: "scale")
+        }
+        CATransaction.commit()
     }
 }
 
@@ -124,7 +143,6 @@ extension CircleAnimationView {
         let y = arc4random_uniform(UInt32(self.frame.height))
         return CGPoint(x: Double(x), y: Double(y))
     }
-    
 }
 
 //MARK: - Setting Physics Behaviours
